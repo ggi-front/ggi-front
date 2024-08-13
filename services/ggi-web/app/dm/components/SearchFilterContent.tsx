@@ -6,7 +6,7 @@ import { TextGothicBoldMb10 } from "../components/styles/Typography";
 import OngoingFilterDate from "./OngoingFilterDate";
 import LocalFilter from "./LocalFilter";
 import MultipleChoice from "../components/styles/MuitipleChoice";
-import { sendTo, usage } from "constants/dm/dm";
+import { conditions, usage } from "constants/dm/dm";
 import SearchFilterDetail from "./SearchFilterDetail";
 
 export default function SearchFilterContent({
@@ -31,12 +31,14 @@ export default function SearchFilterContent({
       </FlexColumn>
     </FlexSpaceBetweenMb20>
     <FlexSpaceBetweenMb20>
-      <FlexColumn>
-        <TextGothicBoldMb10 color={theme.palette.black}>
-          수신인
-        </TextGothicBoldMb10>
-        <MultipleChoice values={sendTo} />
-      </FlexColumn>
+      {tabs.ongoing ? (
+        <FlexColumn>
+          <TextGothicBoldMb10 color={theme.palette.black}>
+            특수조건
+          </TextGothicBoldMb10>
+          <MultipleChoice values={conditions} extra={true} />
+        </FlexColumn>
+      ) : null}
       <FlexColumn>
         <TextGothicBoldMb10 color={theme.palette.black}>
           용도

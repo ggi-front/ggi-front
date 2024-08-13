@@ -12,7 +12,7 @@ export default function SearchFilterDetail () {
     <FlexSpaceBetweenMb20>
       <FlexColumn>
         <TextGothicBoldMb10 color={theme.palette.black}>
-          특수조건
+          임차조건
         </TextGothicBoldMb10>
         <MultipleChoice values={conditions} extra={true} />
       </FlexColumn>

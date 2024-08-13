@@ -6,7 +6,6 @@ import { FoldBtn, SearchBtn } from '../components/styles/Button'
 import { IDmProps } from '@/models/dm/DM'
 import SearchFilter from './SearchFilter'
 import { theme } from '../components/styles/theme'
-import { Divider } from '@chakra-ui/react'
 
 export default function Search({
   tabs
