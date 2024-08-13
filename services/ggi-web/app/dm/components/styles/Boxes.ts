@@ -96,12 +96,17 @@ export const FilterContainer = styled(FlexColumn)({
 })
 
 export const SelectBox = styled.select({
-  width: '200px',
+  width: '186.67px',
+  maxWidth: '285.5px',
   height: '50px',
   border: `1px solid ${theme.palette.graySecondary}`,
   borderRadius: '16px',
   padding: '14px',
-  marginRight: '10px'
+  marginRight: '10px',
+  appearance: 'none',
+  background: 'url("/dm/images/up_down.png") no-repeat right',
+  backgroundSize: '16px 16px',
+  backgroundPosition: '14px right'
 })
 
 export const SwitchBox = styled(FlexCenter)({
