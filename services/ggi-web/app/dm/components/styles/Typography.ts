@@ -56,9 +56,9 @@ export const TextGothicBold = styled(GothicText)<{ color: string }>`
   line-height: 20px
 `
 
-export const TextGothicBoldMb10 = styled(TextGothicBold)<{ color: string }>`
+export const TextGothicBoldMb15 = styled(TextGothicBold)<{ color: string }>`
   color: ${({color}) => (color)};
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `
 
 // search component

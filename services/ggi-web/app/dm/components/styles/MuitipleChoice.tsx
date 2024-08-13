@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CountBox, FlexNowrap, MultipleBox } from "./Boxes";
 import { MultipleBtn, MultipleExtraBtn } from "./Button";
 import { theme } from "./theme";
-import { InfoText, TextGothic14px } from "./Typography";
+import { InfoText } from "./Typography";
 
 interface IMultipleProps {
   values: Array<{
@@ -10,16 +10,18 @@ interface IMultipleProps {
     name: string
   }>,
   extra?: boolean
+  expected?:boolean
 }
 
 export default function MultipleChoice({
   values,
-  extra
+  extra,
+  expected
 }: IMultipleProps) {
   const [clickExtra, setClickExtra] = useState<boolean>(false)
 
   return (
-    <MultipleBox>
+    <MultipleBox expected={expected}>
       {values.length && values.slice(0, 4).map((value, idx) => (
         <MultipleBtn key={idx} status={value.status}>
           <InfoText color={value.status ? theme.palette.blueMain : theme.palette.grayMain}>
@@ -29,14 +31,20 @@ export default function MultipleChoice({
       ))}
       {extra ? (
         <MultipleExtraBtn status={clickExtra} onClick={() => setClickExtra(!clickExtra)}>
-          {clickExtra ? <FlexNowrap>
-            <img src="/dm/images/filter.png" width={'10px'} height={'8px'}/>
-            <InfoText color={theme.palette.blueMain}>그외</InfoText>
-          </FlexNowrap> : (
-          <InfoText color={theme.palette.blueMain}>
+          <FlexNowrap>
+            <img 
+              src="/dm/images/filter-left.png" 
+              width={'16px'} 
+              height={'16px'} 
+              color={clickExtra ? theme.palette.blueMain : theme.palette.grayMain}
+            />
+            <InfoText color={clickExtra ? theme.palette.blueMain : theme.palette.grayMain}>
+              그외
+            </InfoText>
+          </FlexNowrap>
+          {/* <InfoText color={theme.palette.blueMain}>
             그외 <CountBox>{`${values.slice(4).length}`}</CountBox>
-          </InfoText>
-        )}
+          </InfoText> */}
         </MultipleExtraBtn>
       ) : null}
     </MultipleBox>

@@ -33,8 +33,8 @@ export const FlexSpaceBetween =  styled(Flex)({
   justifyContent: 'space-between'
 })
 
-export const FlexSpaceBetweenMb20 = styled(FlexSpaceBetween)({
-  marginBottom: '20px'
+export const FlexSpaceBetweenMb30 = styled(FlexSpaceBetween)({
+  marginBottom: '30px'
 })
 
 // info component
@@ -95,19 +95,18 @@ export const FilterContainer = styled(FlexColumn)({
   padding: '20px 35px'
 })
 
-export const SelectBox = styled.select({
-  width: '186.67px',
-  maxWidth: '285.5px',
-  height: '50px',
-  border: `1px solid ${theme.palette.graySecondary}`,
-  borderRadius: '16px',
-  padding: '14px',
-  marginRight: '10px',
-  appearance: 'none',
-  background: 'url("/dm/images/up_down.png") no-repeat right',
-  backgroundSize: '16px 16px',
-  backgroundPosition: '14px right'
-})
+export const SelectBox = styled.select<{ width: string, position: string}>`
+  width: ${({ width }) => (width)};
+  height: 50px;
+  border: 1px solid ${theme.palette.graySecondary};
+  border-radius: 16px;
+  padding: 14px;
+  margin-right: 10px;
+  appearance: none;
+  background: url("/dm/images/up_down.png") no-repeat;
+  background-size: 16px 16px;
+  background-position: ${({position}) => (`${position} 16px`)}
+`
 
 export const SwitchBox = styled(FlexCenter)({
   width: '96px',
@@ -118,14 +117,14 @@ export const SwitchBox = styled(FlexCenter)({
   border: `1px solid ${theme.palette.blueSecondary}`
 })
 
-export const MultipleBox = styled(FlexNowrap)({
-  width: '680px',
-  height: '50px',
-  border: `1px solid ${theme.palette.backgroundGray}`,
-  borderRadius: '16px',
-  backgroundColor: `${theme.palette.backgroundGray}`,
-  padding: '16px'
-})
+export const MultipleBox = styled(FlexNowrap)<{ expected?: boolean }>`
+  width: ${({expected}) => (expected ? '1431px' : '680px')};
+  height: 50px;
+  border: 1px solid ${theme.palette.backgroundGray};
+  border-radius: 16px;
+  background-color: ${theme.palette.backgroundGray};
+  padding: 16px;
+`
 
 export const CountBox = styled.span({
   width: '22px',
@@ -136,6 +135,27 @@ export const CountBox = styled.span({
   padding: '0 6px'
 })
 
+export const DateInputContainer = styled(FlexNowrap)<{ checked: boolean }>`
+  width: 680px;
+  height: 50px;
+  border-radius: 16px;
+  border: 1px solid ${({checked}) => (checked ? theme.palette.grayThird : theme.palette.blueMain)};
+  background-color: ${({checked}) => (checked ? theme.palette.backgroundGray : theme.palette.white)};
+  padding: 20px;
+`
+
+export const DateInputBox = styled.input<{ checked: boolean }>`
+  appearance: none;
+  outline: none;
+  width: 120px;
+  background-color: ${({checked}) => (checked ? theme.palette.backgroundGray : theme.palette.white)};
+  ::placeholder {
+    text-align: center;
+    color: ${({checked}) => (checked ? theme.palette.disabledGray : theme.palette.black)};
+  }
+`
+
+// condition modal
 export const ModalContainer = styled.div({
   width: '531px',
   maxHeight: '520px',
@@ -159,15 +179,18 @@ export const ModalContentBox = styled(Flex)({
   border: `1px solid ${theme.palette.graySecondary}`,
   borderRadius: '10px',
   padding: '20px',
-  margin: '5px auto'
+  margin: '5px auto',
+  marginTop: '20px'
 })
 
 export const InputBox = styled.input`
-  width: 323px;
+  width: 411px;
   height: 36px;
   border-radius: 10px;
-  border: 1px solid ${theme.palette.graySecondary};
-  
+  border: 1px solid ${theme.palette.blueMain};
+  outline: none;
+  box-shadow: 0px 0px 0px 4px #3B82F640;
+
   &:focus {
     border-color: ${theme.palette.blueMain}
   }

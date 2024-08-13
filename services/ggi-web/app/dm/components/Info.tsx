@@ -1,8 +1,8 @@
-import { DownloadContainer, Flex, FlexSpaceBetween, FlexSpaceBetweenAlignCenter, TitleContainer, UsersContainer } from '../components/styles/Boxes'
+import { DownloadContainer, Flex, FlexNowrap, FlexSpaceBetween, FlexSpaceBetweenAlignCenter, TitleContainer, UsersContainer } from '../components/styles/Boxes'
 import { theme } from '../components/styles/theme'
 import { IDmProps, ITabStatus } from '@/models/dm/DM'
 import { HelpText, InfoText, TextGothicBold, TextSuit18px, TitleText } from '../components/styles/Typography'
-import { TabBtn } from '../components/styles/Button'
+import { AddBtn, TabBtn } from '../components/styles/Button'
 import { infoContents } from 'constants/dm/dm'
 
 export default function Info({
@@ -39,13 +39,18 @@ export default function Info({
             <InfoText color={theme.palette.grayMain}>user membership</InfoText>
           </FlexSpaceBetweenAlignCenter>
           <DownloadContainer>
+            <FlexNowrap style={{ height: '22px' }}>
+              <TextGothicBold color={theme.palette.grayMain}>잔여 다운로드</TextGothicBold>
+              <img src="/dm/images/help.png" alt="help" width={'16px'} height={'16px'}/>
+            </FlexNowrap>
             <FlexSpaceBetween style={{ height: '22px' }}>
-              <TextGothicBold color={theme.palette.grayMain}>다운로드</TextGothicBold>
-              <TextGothicBold color={theme.palette.blueMain}>일 잔여 00개</TextGothicBold>
-            </FlexSpaceBetween>
-            <FlexSpaceBetween style={{ height: '22px' }}>
-              <div></div>
-              <TextGothicBold color={theme.palette.grayMain}>월 잔여 00개</TextGothicBold>
+              <FlexNowrap>
+                <TextGothicBold color={theme.palette.blueMain}>일 00개&nbsp;</TextGothicBold>
+                <TextGothicBold color={theme.palette.grayMain}>/ 월 00개</TextGothicBold>
+              </FlexNowrap>
+              <AddBtn>
+                추가하기
+              </AddBtn>
             </FlexSpaceBetween>
           </DownloadContainer>
         </UsersContainer>

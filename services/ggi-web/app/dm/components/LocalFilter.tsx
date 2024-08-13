@@ -32,7 +32,7 @@ export default function LocalFilter() {
   }
 
   return (
-    <FlexSpaceBetweenAlignCenter style={{ width: 'auto', flexWrap: 'nowrap' }}>
+    <FlexSpaceBetweenAlignCenter style={{ width: '680px', flexWrap: 'nowrap' }}>
       <SwitchBox>
         <SwitchBtn status={localFilter.court} onClick={handleClickLocal}>
           <TextGothicBold 
@@ -52,9 +52,9 @@ export default function LocalFilter() {
           </TextGothicBold>
         </SwitchBtn>
       </SwitchBox>
-      <StyledSelect options={options}/>
-      <StyledSelect options={options}/>
-      <StyledSelect options={options} noMargin={true} />
+      <StyledSelect options={options} width="186px" position="160px"/>
+      <StyledSelect options={options} width="186px" position="160px"/>
+      <StyledSelect options={options} marginRight={'0'} width="186px" position="160px"/>
     </FlexSpaceBetweenAlignCenter>
   )
 }

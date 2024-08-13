@@ -7,12 +7,6 @@ export const saveConditionTitle = `나의조건을 설정합니다`
 export const conditionSubTitle = `나의조건은 10개까지만 설정할 수 있습니다`
 export const saveConditionSubTitle = `사용하실 조건 이름을 적어주세요. \r\n 조건은 10개까지만 저장할 수 있습니다.`
 
-export const sendTo = [
-  {status : true, name: '소재지'},
-  {status : false, name: '소유자'},
-  {status : false, name: '채무자'},
-  {status : false, name: '채권자'},
-]
 export const usage = [
   {status : true, name: '아파트'},
   {status : false, name: '다세대'},
@@ -42,6 +36,11 @@ export const conditions = [
   {status : false, name: '토지만 입찰'},
   {status : false, name: '토지별도등기'},
   {status : false, name: '재매각'},
+]
+
+export const rentConditions = [
+  {status : true, name: '임차인 없는 물건'},
+  {status : false, name: 'HUG인수조건 변경'},
 ]
 
 export const price = [

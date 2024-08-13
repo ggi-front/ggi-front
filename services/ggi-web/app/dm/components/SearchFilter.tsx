@@ -8,15 +8,25 @@ import SearchFilterContent from "./SearchFilterContent";
 import ModalPortal from "./ModalPortal";
 import MyConditionModal from "./MyConditionModal";
 import { conditionSubTitle, conditionTitle } from "constants/dm/dm";
+import StyledCheckbox from "./styles/StyledCheckbox";
 
 export default function SearchFilter({
-  tabs
+  tabs,
+  filters,
+  setFilters
 }: IDmProps) {
   const [openCondition, setOpenCondition] = useState<boolean>(false)
   const [openDetail, setOpenDetail] = useState<boolean>(false)
 
+  const handleChecked = (chk: boolean) => {
+    if (!setFilters) return
+    const newFilters = {...filters}
+    newFilters.exceptDownload = chk
+    setFilters(newFilters)
+  }
+
   useEffect(() => {
-    if (!tabs.ongoing) {
+    if (!tabs?.ongoing) {
       setOpenDetail(false)
     } else setOpenDetail(true)
   }, [tabs])
@@ -27,21 +37,19 @@ export default function SearchFilter({
       <FlexSpaceBetweenAlignCenter style={{ marginBottom: '20px' }}>
         <FlexSpaceBetweenAlignCenter>
           <TextGothic18px color={theme.palette.black}>검색조건</TextGothic18px>
-          <CheckBox type="checkbox" id='chk' />
-          <label htmlFor="chk">
-            <HelpText color={theme.palette.grayMain}>
-              이전 다운로드 사건을 제외합니다
-            </HelpText>
-          </label>
+          <StyledCheckbox 
+            checked={filters?.exceptDownload ?? true} 
+            contents="이전 다운로드 사건을 제외합니다"
+            setChecked={handleChecked}
+          />
         </FlexSpaceBetweenAlignCenter>
-
         <div>
         <MineBtn>
           <TextGothicBold color={theme.palette.blueMain} onClick={() => setOpenCondition(!openCondition)}>
             ★나의조건
           </TextGothicBold>
         </MineBtn>
-        {tabs.ongoing ?
+        {tabs?.ongoing ?
           <MineBtn 
             style={{ marginLeft: '10px' }}
             onClick={() => setOpenDetail(openDetail => !openDetail)}
@@ -54,11 +62,15 @@ export default function SearchFilter({
       </FlexSpaceBetweenAlignCenter>
 
       {/* search filter contents */}
-      <SearchFilterContent tabs={tabs} openDetail={openDetail} />
+      <SearchFilterContent tabs={tabs} openDetail={openDetail} filters={filters} setFilters={setFilters} />
 
       {openCondition 
       ? <ModalPortal>
-        <MyConditionModal title={conditionTitle} subTitle={conditionSubTitle} />
+        <MyConditionModal 
+          status="view"
+          title={conditionTitle} 
+          subTitle={conditionSubTitle} 
+        />
       </ModalPortal> : null}
     </FilterContainer>
     </>

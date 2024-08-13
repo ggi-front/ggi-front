@@ -2,12 +2,14 @@ import { FlexSpaceBetween, InputBox, ModalBox, ModalContainer, ModalContentBox }
 import { TextGothic15px, TextSuit20px } from "./styles/Typography";
 
 interface IModalProps {
+  status: 'view' | 'save'
   title: string,
   subTitle: string,
   contents?: Array<any>
 }
 
 export default function MyConditionModal({
+  status,
   title,
   subTitle,
   contents
@@ -19,19 +21,16 @@ export default function MyConditionModal({
         <img src="/dm/images/close.png" width={'16px'} height={'6px'}/>
       </div>
       <ModalBox>
-        <TextSuit20px>{title}{`(n/10)`}</TextSuit20px>
+        <TextSuit20px style={{ marginBottom: '10px' }}>{title}{`(n/10)`}</TextSuit20px>
         <TextGothic15px>{subTitle}</TextGothic15px>
-
-        {contents ? contents.map((content, idx) => (
-          <ModalContentBox key={idx}>
-
-          </ModalContentBox>
-        )) : (
+        {status === 'save' ? (
           <ModalContentBox>
-            <FlexSpaceBetween>
-              {/* input components */}
-              <InputBox />
-            </FlexSpaceBetween>
+            <InputBox />
+          </ModalContentBox>
+          // buttons
+        ) : (
+          <ModalContentBox>
+
           </ModalContentBox>
         )}
       </ModalBox>

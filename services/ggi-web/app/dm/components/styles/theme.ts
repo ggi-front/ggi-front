@@ -9,7 +9,8 @@ const palette = {
   graySecondary: '#E5E7EB',
   grayThird: '#F3F4F6',
   backgroundGray: '#F8FAFC',
-  btnBackground: '#FDFDFD'
+  btnBackground: '#FDFDFD',
+  disabledGray: '#D1D5DB'
 }
 
 export const theme = {

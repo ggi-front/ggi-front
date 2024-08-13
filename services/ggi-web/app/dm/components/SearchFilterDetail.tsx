@@ -1,57 +1,77 @@
-import { conditions, price } from "constants/dm/dm";
-import { FlexColumn, FlexSpaceBetweenAlignCenter, FlexSpaceBetweenMb20 } from "./styles/Boxes";
+import { price, rentConditions } from "constants/dm/dm";
+import { FlexColumn, FlexSpaceBetweenAlignCenter, FlexSpaceBetweenMb30 } from "./styles/Boxes";
 import MultipleChoice from "./styles/MuitipleChoice";
 import { theme } from "./styles/theme";
-import { InfoText, TextGothicBoldMb10 } from "./styles/Typography";
+import { InfoText, TextGothicBoldMb15 } from "./styles/Typography";
 import StyledSelect from "./styles/StyledSelect";
+import { IDmProps } from "@/models/dm/DM";
+import StyledCheckbox from "./styles/StyledCheckbox";
 
-export default function SearchFilterDetail () {
+export default function SearchFilterDetail ({
+  tabs,
+  filters,
+  setFilters
+}: IDmProps) {
+
+  const handleChecked = (chk: boolean) => {
+    if (!setFilters) return
+    const newFilters = {...filters}
+    newFilters.exceptChoice = chk
+    setFilters(newFilters)
+  }
 
   return (
     <>
-    <FlexSpaceBetweenMb20>
+    <FlexSpaceBetweenMb30>
       <FlexColumn>
-        <TextGothicBoldMb10 color={theme.palette.black}>
-          임차조건
-        </TextGothicBoldMb10>
-        <MultipleChoice values={conditions} extra={true} />
+        <FlexSpaceBetweenAlignCenter>
+          <TextGothicBoldMb15 color={theme.palette.black}>
+            임차조건
+          </TextGothicBoldMb15>
+          <StyledCheckbox  
+            checked={filters?.exceptChoice ?? false}
+            contents={"선택 제외"} 
+            setChecked={handleChecked}
+          />
+        </FlexSpaceBetweenAlignCenter>
+        <MultipleChoice values={rentConditions} />
       </FlexColumn>
       <FlexColumn>
-        <TextGothicBoldMb10 color={theme.palette.black}>
+        <TextGothicBoldMb15 color={theme.palette.black}>
           감정가
-        </TextGothicBoldMb10>
+        </TextGothicBoldMb15>
         <FlexSpaceBetweenAlignCenter>
-          <StyledSelect options={price} noMargin={true} wider={true} />
-          <InfoText color={theme.palette.grayMain} style={{ padding: '0 5px' }}>
-            ~
-          </InfoText>
-          <StyledSelect options={price} noMargin={true} wider={true} />
+          <StyledSelect options={price} marginRight={'0'} width="326.5px" position="300px" />
+            <InfoText color={theme.palette.grayMain} style={{ padding: '0 5px' }}>
+              ~
+            </InfoText>
+          <StyledSelect options={price} marginRight={'0'} width="326.5px" position="300px" />
         </FlexSpaceBetweenAlignCenter>
       </FlexColumn>
-    </FlexSpaceBetweenMb20>  
-    <FlexSpaceBetweenMb20>
+    </FlexSpaceBetweenMb30>  
+    <FlexSpaceBetweenMb30>
       <FlexColumn>
-        <TextGothicBoldMb10 color={theme.palette.black}>
+        <TextGothicBoldMb15 color={theme.palette.black}>
           현재상태
-        </TextGothicBoldMb10>
+        </TextGothicBoldMb15>
         <FlexSpaceBetweenAlignCenter>
-          <StyledSelect options={price} wider={true} />
-          <StyledSelect options={price} noMargin={true} wider={true} />
+          <StyledSelect options={price} width="334px" position="300px"/>
+          <StyledSelect options={price} width="334px" position="300px"  marginRight="0"/>
         </FlexSpaceBetweenAlignCenter>
       </FlexColumn>
       <FlexColumn>
-        <TextGothicBoldMb10 color={theme.palette.black}>
+        <TextGothicBoldMb15 color={theme.palette.black}>
           최저가
-        </TextGothicBoldMb10>
+        </TextGothicBoldMb15>
         <FlexSpaceBetweenAlignCenter>
-          <StyledSelect options={price} noMargin={true} wider={true} />
-          <InfoText color={theme.palette.grayMain} style={{ padding: '0 5px' }}>
-            ~
-          </InfoText>
-          <StyledSelect options={price} noMargin={true} wider={true} />
+          <StyledSelect options={price} marginRight={'0'} width="326.5px" position="300px"  />
+            <InfoText color={theme.palette.grayMain} style={{ padding: '0 5px' }}>
+              ~
+            </InfoText>
+          <StyledSelect options={price} marginRight={'0'} width="326.5px" position="300px"  />
         </FlexSpaceBetweenAlignCenter>
       </FlexColumn>
-    </FlexSpaceBetweenMb20>
+    </FlexSpaceBetweenMb30>
     </>
     
   )

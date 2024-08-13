@@ -16,6 +16,20 @@ export const TabBtn = styled.button<{ status : boolean}>`
   background-color: ${({status}) => (status ? theme.palette.blueSecondary : theme.palette.btnBackground)};
 `
 
+export const AddBtn = styled.button({
+  width: '84px',
+  height: '28px',
+  border: `1px solid ${theme.palette.graySecondary}`,
+  borderRadius: '8px',
+  backgroundColor: `${theme.palette.backgroundGray}`,
+  padding: '3px 10px',
+  color: `${theme.palette.grayMain}`,
+  fontSize: '14px',
+  fontFamily: 'nanum-gothic',
+  fontWeight: 700,
+  lineHeight: '20px'
+})
+
 // Search Component
 export const FoldBtn = styled.button({
   width: '24px',
@@ -65,8 +79,8 @@ export const MultipleExtraBtn = styled.button<{ status: boolean }>`
   border-radius: 100px;
   color: ${theme.palette.blueMain};
   background-color: ${({status}) => (status 
-    ? theme.palette.graySecondary 
-    : theme.palette.blueSecondary
+    ? theme.palette.blueSecondary 
+    : theme.palette.graySecondary
   )};
   border: ${({status}) => (status 
     ? `1px solid ${theme.palette.blueMain}`
