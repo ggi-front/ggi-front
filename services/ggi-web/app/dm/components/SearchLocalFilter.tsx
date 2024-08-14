@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
-import { FlexSpaceBetweenAlignCenter, SwitchBox } from "../components/styles/Boxes";
-import { SwitchBtn } from "../components/styles/Button";
-import { TextGothicBold } from "../components/styles/Typography";
+import { FlexSpaceBetweenAlignCenter, SwitchBox } from "./styles/Boxes";
+import { SwitchBtn } from "./styles/Button";
+import { TextGothicBold } from "./styles/Typography";
 import { ILocalFilter } from "@/models/dm/DM";
-import { theme } from "../components/styles/theme";
-import StyledSelect from "../components/styles/StyledSelect";
+import { theme } from "./styles/theme";
+import StyledSelect from "./styles/StyledSelect";
 import { useQuery } from "@tanstack/react-query";
-import getLocalFilter from "@/remote/dm/search/getLocalFilter";
+import getSido from "@/remote/dm/search/getSido";
 
 const options = [
   {name: '서울특별시'}
 ]
 
-export default function LocalFilter() {
-  // const { data: sido } = useQuery({
-  //   queryKey: ['sido'],
-  //   queryFn: () => getLocalFilter()
-  // })
+export default function SearchLocalFilter() {
+  const { data: sido } = useQuery({
+    queryKey: ['sido'],
+    queryFn: () => getSido()
+  })
   const [localFilter, setLocalFilter] = useState<ILocalFilter>({
     court: false,
     local: true
@@ -52,9 +52,9 @@ export default function LocalFilter() {
           </TextGothicBold>
         </SwitchBtn>
       </SwitchBox>
-      <StyledSelect options={options} width="186px" position="160px"/>
-      <StyledSelect options={options} width="186px" position="160px"/>
-      <StyledSelect options={options} marginRight={'0'} width="186px" position="160px"/>
+      <StyledSelect options={sido?.sds} width="186px" position="160px"/>
+      <StyledSelect options={sido?.sds} width="186px" position="160px"/>
+      <StyledSelect options={sido?.sds} marginRight={'0'} width="186px" position="160px"/>
     </FlexSpaceBetweenAlignCenter>
   )
 }
