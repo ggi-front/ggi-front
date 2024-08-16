@@ -121,10 +121,11 @@ export const DownloadBtn = styled.button`
   background-color: ${theme.palette.white};
 `
 
-export const PageBtn = styled.button`
+export const PageBtn = styled.button<{ clicked: boolean }>`
   width: 38px;
   height: 38px;
   border-radius: 8px;
+  background-color: ${({clicked}) => (clicked ? theme.palette.graySecondary : 'none')};
 
   &:hover {
     background-color: ${theme.palette.graySecondary};

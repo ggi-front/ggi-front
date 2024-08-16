@@ -17,10 +17,10 @@ export default function ListPagination() {
           </TextSuitBold>
         </ModalBtn>
         <FlexNowrap style={{ margin: '0 10px'}}>
-          <PageBtn>
+          <PageBtn clicked={true}>
             <TextSuitBold color={theme.palette.grayMain}>1</TextSuitBold>
           </PageBtn>
-          <PageBtn>
+          <PageBtn clicked={false}>
           <TextSuitBold color={theme.palette.grayMain}>2</TextSuitBold>
           </PageBtn>
         </FlexNowrap>

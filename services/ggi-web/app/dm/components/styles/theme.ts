@@ -75,7 +75,7 @@ const styles = {
   },
   pagination: {
     btn: {
-      border: `1px solid ${palette.grayMain}`,
+      border: `1px solid ${palette.graySecondary}`,
       backgroundColor: `${palette.white}`,
       padding: '5px 10px'
     }

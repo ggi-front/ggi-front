@@ -1,5 +1,5 @@
 import { IDmProps } from "@/models/dm/DM";
-import { FilterContainer, FlexNowrap, FlexSpaceBetweenAlignCenter } from "../styles/Boxes";
+import { FilterContainer, FlexNowrap, FlexSpaceBetweenMb } from "../styles/Boxes";
 import { MineBtn } from "../styles/Button";
 import { theme } from "../styles/theme";
 import { TextGothic18px, TextGothicBold } from "../styles/Typography";
@@ -34,7 +34,7 @@ export default function SearchFilter({
   return (
     <>
     <FilterContainer>
-      <FlexSpaceBetweenAlignCenter style={{ marginBottom: '20px' }}>
+      <FlexSpaceBetweenMb mb="20px">
         <FlexNowrap>
           <TextGothic18px color={theme.palette.black}>검색조건</TextGothic18px>
           <StyledCheckbox 
@@ -60,7 +60,7 @@ export default function SearchFilter({
             </TextGothicBold>
           </MineBtn>: null}
         </div>
-      </FlexSpaceBetweenAlignCenter>
+      </FlexSpaceBetweenMb>
 
       {/* search filter contents */}
       <SearchFilterContent tabs={tabs} openDetail={openDetail} filters={filters} setFilters={setFilters} />
