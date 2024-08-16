@@ -1,6 +1,13 @@
+import { IDmProps } from "@/models/dm/DM";
+import List from "./list/List";
 
-export default function MyDm() {
+export default function MyDm({
+  tabs
+}: IDmProps) {
+
   return (
-    <div>my dm</div>
+    <>
+    <List tabs={tabs} />
+    </>
   )
 }

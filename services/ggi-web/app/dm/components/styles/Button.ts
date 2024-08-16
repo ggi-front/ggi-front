@@ -31,11 +31,11 @@ export const AddBtn = styled.button({
 })
 
 // Search Component
-export const FoldBtn = styled.button({
-  width: '24px',
-  height: '24px',
-  backgroundColor: `${theme.palette.backgroundGray}`
-})
+export const IconBtn = styled.button<{ bc: string }>`
+  width: 24px;
+  height: 24px;
+  background-color: ${({ bc }) => (bc)}
+`
 
 export const CheckBox = styled.input({
   margin: '0 10px',
@@ -95,4 +95,38 @@ export const SearchBtn = styled.button<{ color: string }>`
   border-radius: 12px;
   margin: 0 5px; 
   padding: 15px 20px;
+`
+
+export const ModalBtn = styled.button<{ styles: any }>`
+  ${({ styles }) => (styles)},
+  width: auto;
+  height: 38px;
+  border-radius: 8px;
+`
+
+export const ExtraModalBtn = styled.button<{ save: boolean }>`
+  width: auto;
+  height: 35px;
+  padding: 5px 15px;
+  background-color: ${({ save }) => (save ? theme.palette.blueMain : theme.palette.white)};
+  border: ${({ save }) => (save ? 'none' : `1px solid ${theme.palette.graySecondary}`)};
+  border-radius: 8px;
+`
+
+export const DownloadBtn = styled.button`
+  height: 50px;
+  border-radius: 16px;
+  border: 1px solid ${theme.palette.graySecondary};
+  padding: 10px;
+  background-color: ${theme.palette.white};
+`
+
+export const PageBtn = styled.button`
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: ${theme.palette.graySecondary};
+  }
 `

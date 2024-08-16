@@ -33,9 +33,9 @@ export const FlexSpaceBetween =  styled(Flex)({
   justifyContent: 'space-between'
 })
 
-export const FlexSpaceBetweenMb30 = styled(FlexSpaceBetween)({
-  marginBottom: '30px'
-})
+export const FlexSpaceBetweenMb = styled(FlexSpaceBetween)<{ mb: string}>`
+  margin-bottom: ${({ mb }) => (mb)};
+`
 
 // info component
 export const TitleContainer = styled(FlexColumn)({
@@ -54,9 +54,10 @@ export const UsersContainer = styled(FlexSpaceBetween)({
 })
 
 // nameContainer
-export const FlexSpaceBetweenAlignCenter = styled(FlexSpaceBetween)({
-  alignItems: 'center'
-})
+export const FlexSpaceBetweenAlignCenter = styled(FlexSpaceBetween)<{ styles?: any }>`
+  ${({ styles }) => (styles)},
+  align-items: center;
+`
 
 export const DownloadContainer = styled(FlexSpaceBetween)({
   width: '385px',
@@ -78,7 +79,7 @@ export const SearchTitleContainer = styled(FlexSpaceBetweenAlignCenter)<{ open :
   height: 50px;
   border: 1px solid ${theme.palette.graySecondary};
   background-color: ${theme.palette.backgroundGray};
-  padding: 0 35px;
+  padding: 15px 35px;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   border-bottom-left-radius: ${({open}) => (open ? '0' : '16px')};
@@ -156,21 +157,17 @@ export const DateInputBox = styled.input<{ checked: boolean }>`
 `
 
 // condition modal
-export const ModalContainer = styled.div({
-  width: '531px',
-  maxHeight: '520px',
-  boxShadow: '0px 8px 5px 0px rgba(0, 0, 0, 0.08)',
-  backgroundColor: `${theme.palette.white}`,
-  borderRadius: '16px',
-  padding: '20px'
-})
+export const ModalContainer = styled.div<{ width: string, styles: any }>`
+  ${({ styles }) => (styles)},
+  width: ${({ width }) => (width)};
+`
 
 export const ModalBox = styled(FlexCenter)({
   flexDirection: 'column',
   width: '451px',
   maxHeight: '188px',
   margin: '20px',
-  marginTop: '0px'
+  marginTop: '30px'
 })
 
 export const ModalContentBox = styled(Flex)({
@@ -190,8 +187,56 @@ export const InputBox = styled.input`
   border: 1px solid ${theme.palette.blueMain};
   outline: none;
   box-shadow: 0px 0px 0px 4px #3B82F640;
+  padding: 0px 10px;
+
+  font-size: 16px;
+  font-weight: 700;
+  font-family: SUIT;
 
   &:focus {
     border-color: ${theme.palette.blueMain}
   }
 `
+
+export const ModalBtnGrid = styled.div({
+  display: 'grid',
+  gridTemplateColumns: '120px 315px',
+  columnGap: '15px',
+  marginTop: '15px',
+  marginBottom: '15px'
+})
+
+export const ModalContentGrid = styled.div<{ styles: any }>`
+  ${({ styles }) => (styles)}
+`
+
+export const DownloadCount = styled.span({
+  height: '28px',
+  border: `1px solid ${theme.palette.graySecondary}`,
+  borderRadius: '999px',
+  padding: '3px 6px'
+})
+
+// list
+export const Table = styled.table`
+  width: 1500px;
+  border-collapse: collapse;
+  border-radius: 16px;
+  border-style: hidden;
+  box-shadow: 0 0 0 1px ${theme.palette.graySecondary};
+  margin-bottom: 40px;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+`
+
+// pagination
+export const PaginationBox = styled(FlexCenter)({
+  width: '492px',
+  height: '78px',
+  borderRadius: '8px',
+  padding: '10px',
+  border: `1px solid ${theme.palette.borderGray}`,
+  backgroundColor: `${theme.palette.backgroundGray}`
+})

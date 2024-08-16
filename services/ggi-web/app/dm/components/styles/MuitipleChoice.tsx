@@ -1,28 +1,37 @@
-import { useState } from "react";
-import { CountBox, FlexNowrap, MultipleBox } from "./Boxes";
+import { Dispatch, SetStateAction, useState } from "react";
+import { FlexNowrap, MultipleBox } from "./Boxes";
 import { MultipleBtn, MultipleExtraBtn } from "./Button";
 import { theme } from "./theme";
 import { InfoText } from "./Typography";
+import ModalPortal from "../modal/ModalPortal";
+import ExtraModal from "../modal/ExtraModal";
+import { IFilterProps, ITabStatus } from "@/models/dm/DM";
 
 interface IMultipleProps {
+  type: string
   values: Array<{
     status: boolean,
     name: string
-  }>,
-  extra?: boolean
-  expected?:boolean
+  }>
+  tabs: ITabStatus,
+  filters?: IFilterProps
+  setFilters?: Dispatch<SetStateAction<IFilterProps>>
+  extra?: number
 }
 
 export default function MultipleChoice({
+  type,
   values,
+  tabs,
   extra,
-  expected
+  filters,
+  setFilters
 }: IMultipleProps) {
   const [clickExtra, setClickExtra] = useState<boolean>(false)
 
   return (
-    <MultipleBox expected={expected}>
-      {values.length && values.slice(0, 4).map((value, idx) => (
+    <MultipleBox expected={tabs?.expected}>
+      {values.length && values.slice(0, extra).map((value, idx) => (
         <MultipleBtn key={idx} status={value.status}>
           <InfoText color={value.status ? theme.palette.blueMain : theme.palette.grayMain}>
             {value.name}
@@ -30,6 +39,7 @@ export default function MultipleChoice({
         </MultipleBtn>
       ))}
       {extra ? (
+        <>
         <MultipleExtraBtn status={clickExtra} onClick={() => setClickExtra(!clickExtra)}>
           <FlexNowrap>
             <img 
@@ -46,6 +56,19 @@ export default function MultipleChoice({
             그외 <CountBox>{`${values.slice(4).length}`}</CountBox>
           </InfoText> */}
         </MultipleExtraBtn>
+        </>
+      ) : null}
+      {clickExtra ? (
+        <ModalPortal>
+          <ExtraModal 
+            tabs={tabs}
+            type={type} 
+            contents={values.slice(extra)} 
+            filters={filters ?? {}} 
+            setFilters={setFilters ?? undefined}
+            setOpenModal={() => setClickExtra(!clickExtra)}
+          />
+        </ModalPortal>
       ) : null}
     </MultipleBox>
   )

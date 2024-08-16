@@ -88,3 +88,10 @@ export const TextSuit20px = styled(SuitText)({
   fontWeight: 800,
   lineHeight: '25px'
 })
+
+export const TextSuitBold = styled(SuitText)<{ color: string }>`
+  color: ${({color}) => (color)};
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+`

@@ -1,13 +1,13 @@
 
 import { useState } from 'react'
-import { FlexCenter, SearchTitleContainer } from '../components/styles/Boxes'
-import { SearchTitle, TextGothic18px } from '../components/styles/Typography'
-import { FoldBtn, SearchBtn } from '../components/styles/Button'
+import { FlexCenter, SearchTitleContainer } from '../styles/Boxes'
+import { SearchTitle, TextGothic18px } from '../styles/Typography'
+import { IconBtn, SearchBtn } from '../styles/Button'
 import { IFilterProps, IDmProps } from '@/models/dm/DM'
 import SearchFilter from './SearchFilter'
-import { theme } from '../components/styles/theme'
-import ModalPortal from "./ModalPortal";
-import MyConditionModal from "./MyConditionModal";
+import { theme } from '../styles/theme'
+import ModalPortal from "../modal/ModalPortal";
+import MyConditionModal from "../modal/MyConditionModal";
 import { saveConditionSubTitle, saveConditionTitle } from "constants/dm/dm";
 
 export default function Search({
@@ -19,12 +19,9 @@ export default function Search({
   const [filters, setFilters] = useState<IFilterProps>({
     exceptDownload: true,
     afterToday: true,
-    exceptChoice: true
+    exceptChoice: true,
+    usage: true
   }) //ref???
-
-  const handleClickOpen = () => {
-    setOpen((prev) => (!prev))
-  }
 
   return (
     <>
@@ -33,13 +30,14 @@ export default function Search({
         검색하기
       </SearchTitle>
       <div>
-        <FoldBtn onClick={handleClickOpen}>
+        <IconBtn bc={theme.palette.backgroundGray} onClick={() => setOpen(!open)}>
           {open ? <img src='/dm/images/arrow_up.png'/> 
           : <img src='/dm/images/arrow_down.png'/>}
-        </FoldBtn>
+        </IconBtn>
       </div>
     </SearchTitleContainer>
-    
+    <div id='root-portal'/>
+
     {/* filter */}
     {open ? <SearchFilter 
       tabs={tabs} 
@@ -47,7 +45,7 @@ export default function Search({
       setFilters={setFilters}
     /> : null}
 
-    {/* // 버튼 container */}
+    {/* 버튼 container */}
     <FlexCenter style={{ padding: '20px', borderBottom: `1px solid ${theme.palette.graySecondary}` }}>
       <SearchBtn color={theme.palette.graySecondary}>
         <TextGothic18px color={theme.palette.grayMain}>
@@ -64,16 +62,18 @@ export default function Search({
           검색하기
         </TextGothic18px>
       </SearchBtn>
-      {openModal ? 
+    </FlexCenter>
+    
+    {openModal ? (
       <ModalPortal>
         <MyConditionModal 
           status="save"
           title={saveConditionTitle} 
           subTitle={saveConditionSubTitle} 
+          setOpenModal={setOpenModal}
         />
-      </ModalPortal> : null}
-    </FlexCenter>
-    {/* <Divider /> */}
+      </ModalPortal> 
+    ): null}
     </>
   )
 }

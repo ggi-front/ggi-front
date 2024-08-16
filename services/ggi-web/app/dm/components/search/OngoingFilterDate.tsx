@@ -1,6 +1,6 @@
-import { DateInputContainer, DateInputBox } from "../components/styles/Boxes";
-import { theme } from "../components/styles/theme";
-import { InfoText } from "../components/styles/Typography";
+import { DateInputContainer, DateInputBox } from "../styles/Boxes";
+import { theme } from "../styles/theme";
+import { InfoText } from "../styles/Typography";
 import React, { useState, useRef } from "react";
 
 interface IDateProps {
@@ -12,7 +12,7 @@ export default function OngoingFilterDate({
 }: IDateProps) {
   const [startDateValue, setStartDateValue] = useState<string>('')
   const [endDateValue, setEndDateValue] = useState<string>('')
-  const inputRef = useRef(null)
+  const inputRef: any = useRef(null)
 
   const handleChangeInput = (prop: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, "")

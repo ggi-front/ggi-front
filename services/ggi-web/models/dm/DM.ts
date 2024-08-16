@@ -8,7 +8,7 @@ export interface ITabStatus {
 
 export interface IDmProps {
   tabs: ITabStatus,
-  setFilters: Dispatch<SetStateAction<IFilterProps>>
+  setFilters?: Dispatch<SetStateAction<IFilterProps>>
   setTabs?: Dispatch<SetStateAction<{
     expected: boolean,
     ongoing: boolean,
@@ -16,13 +16,14 @@ export interface IDmProps {
   }>>,
   openDetail?: boolean
   filters?: IFilterProps
-  
+  setOpenModal?: Dispatch<SetStateAction<boolean>>
 }
 
 export interface IFilterProps {
   exceptDownload?: boolean
   afterToday?: boolean
   exceptChoice?: boolean
+  usage?: boolean
 }
 
 export interface ILocalFilter {

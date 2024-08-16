@@ -53,3 +53,104 @@ export const price = [
   {status : false, name: '30억'},
   {status : false, name: '30억~'},
 ]
+
+export const selectPrice = [
+  '1천',
+  '5천',
+  '1억',
+  '3억',
+  '5억',
+  '10억',
+  '30억',
+  '30억~',
+]
+
+export const sidos = {
+  '서울': '서울특별시', 
+  '경기': '경기도',
+  '인천': '인천광역시',
+  '부산': '부산광역시',
+  '대구': '대구광역시',
+  '광주': '광주광역시',
+  '대전': '대전광역시',
+  '울산': '울산광역시',
+  '강원': '강원도',
+  '경남': '경상남도',
+  '경북': '경상북도',
+  '전남': '전라남도',
+  '전북': '전라북도',
+  '충남': '충청남도',
+  '충북': '충청북도',
+  '세종': '세종특별자치시',
+  '제주': '제주도'
+}
+
+export const listHeaders = (expected: boolean) => ({
+  chk: {
+    name: '',
+    width: '3%'
+  },
+  idx: {
+    name: '순번',
+    width: '5%'
+  },
+  download: {
+    name: '다운이력',
+    width: '7%'
+  },
+  court: {
+    name: '법원 또는 계',
+    width: '10%'
+  },
+  caseNum: {
+    name: '사건번호',
+    width: '15%'
+  },
+  openingDate: {
+    name: expected ? '개시결정일' : '현재상태',
+    width: '7%'
+  },
+  usage: {
+    name: '용도',
+    width: '13%'
+  },
+  sendTo: {
+    name: '수신인',
+    width: '10%'
+  },
+  address: {
+    name: '주소',
+    width: '20%'
+  },
+  postCode: {
+    name: '우편번호',
+    width: '10%'
+  }
+})
+
+export const myDmHeaders = {
+  0: {
+    name: '',
+    width: '5%'
+  },
+  1: {
+    name: '분류',
+    width: '10%'
+  },
+  2: {
+    name: '검색조건',
+    width: '50%'
+  },
+  3: {
+    name: '다운로드 수',
+    width: '10%'
+  },
+  4: {
+    name: '재 다운로드',
+    width: '10%'
+  },
+  5: {
+    name: '유효기한',
+    width: '15%'
+  }
+}
