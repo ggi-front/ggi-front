@@ -104,9 +104,15 @@ export const SelectBox = styled.select<{ width: string, position: string}>`
   padding: 14px;
   margin-right: 10px;
   appearance: none;
+  -webkit-appearance: none;
   background: url("/dm/images/up_down.png") no-repeat;
   background-size: 16px 16px;
-  background-position: ${({position}) => (`${position} 16px`)}
+  background-position: ${({position}) => (`${position} 16px`)};
+  outline-color: ${theme.palette.blueMain};
+  
+  &:focus {
+    box-shadow: 0px 0px 0px 4px #3B82F640;
+  }
 `
 
 export const SwitchBox = styled(FlexCenter)({
@@ -170,6 +176,17 @@ export const ModalBox = styled(FlexCenter)({
   marginTop: '30px'
 })
 
+export const ModalScrollBox = styled.div`
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 100px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #dfdfdf;
+    border-radius: 6px;
+  }
+`
+
 export const ModalContentBox = styled(Flex)({
   width: '451px',
   maxHeight: '188px',
@@ -210,6 +227,7 @@ export const ModalContentGrid = styled.div<{ styles: any }>`
   ${({ styles }) => (styles)}
 `
 
+// list component
 export const DownloadCount = styled.span({
   height: '28px',
   border: `1px solid ${theme.palette.graySecondary}`,
@@ -217,7 +235,6 @@ export const DownloadCount = styled.span({
   padding: '3px 6px'
 })
 
-// list
 export const Table = styled.table`
   width: 1500px;
   border-collapse: collapse;

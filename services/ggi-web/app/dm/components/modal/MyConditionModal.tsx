@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { FlexNowrap, FlexSpaceBetweenAlignCenter, InputBox, ModalBox, ModalBtnGrid, ModalContainer, ModalContentBox } from "../styles/Boxes";
+import { FlexNowrap, FlexSpaceBetweenAlignCenter, InputBox, ModalBox, ModalBtnGrid, ModalContainer, ModalContentBox, ModalScrollBox } from "../styles/Boxes";
 import { IconBtn, ModalBtn } from "../styles/Button";
 import { theme } from "../styles/theme";
 import { TextGothic15px, TextGothicBold, TextGothicBoldMb15, TextSuit20px } from "../styles/Typography";
@@ -58,21 +58,23 @@ export default function MyConditionModal({
           </ModalBtnGrid>
           </>
         ) : (
-          <ModalContentBox>
-            <FlexSpaceBetweenAlignCenter style={{ width: '410px' }}>
-              <FlexNowrap>
-                <TextGothicBold color={theme.palette.black}>
-                  조건이름
-                </TextGothicBold>
+          <ModalScrollBox>
+            <ModalContentBox>
+              <FlexSpaceBetweenAlignCenter style={{ width: '410px' }}>
+                <FlexNowrap>
+                  <TextGothicBold color={theme.palette.black}>
+                    조건이름
+                  </TextGothicBold>
+                  <IconBtn bc={theme.palette.white}>
+                    <img src="/dm/images/edit.png" alt="edit" />
+                  </IconBtn>
+                </FlexNowrap>
                 <IconBtn bc={theme.palette.white}>
-                  <img src="/dm/images/edit.png" alt="edit" />
+                  <img src="/dm/images/delete.png" alt="delete" width={'20px'} height={'20px'} />
                 </IconBtn>
-              </FlexNowrap>
-              <IconBtn bc={theme.palette.white}>
-                <img src="/dm/images/delete.png" alt="delete" width={'20px'} height={'20px'} />
-              </IconBtn>
-            </FlexSpaceBetweenAlignCenter>
-          </ModalContentBox>
+              </FlexSpaceBetweenAlignCenter>
+            </ModalContentBox>
+          </ModalScrollBox>
         )}
       </ModalBox>
     </ModalContainer>
