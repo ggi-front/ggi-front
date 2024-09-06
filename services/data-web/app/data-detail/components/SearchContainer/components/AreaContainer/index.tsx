@@ -103,6 +103,16 @@ export default function AreaContainer() {
 
     area = simplifyAreaDisplay(area)
 
+    if (sds === '시도' && sggs === '시군구' && umds === '읍면동') {
+      alert('지역을 선택해주세요.')
+      return
+    }
+
+    if (areaArray.includes(area)) {
+      alert('이미 추가된 지역입니다.')
+      return
+    }
+
     // 하위 지역이 선택된 경우 다른 구의 하위 지역 선택 제한
     if (isSubRegionSelected() && isOtherDistrictSubRegionSelected(area)) {
       alert(
@@ -134,11 +144,6 @@ export default function AreaContainer() {
         alert('다른 상위 카테고리는 선택할 수 없습니다.')
         return
       }
-    }
-
-    if (areaArray.includes(area)) {
-      alert('이미 추가된 지역입니다.')
-      return
     }
 
     setSds('시도')
@@ -193,21 +198,21 @@ export default function AreaContainer() {
               value={sds}
               options={sdsData?.sds}
               none
-              error={isFilterError || isLengthError}
+              error={isFilterError}
             />
             <FilterSelect
               handleChange={handleChangeSggs}
               value={sggs}
               options={sggsData?.sggs}
               disabled={sds === '시도'}
-              error={isFilterError || isLengthError}
+              error={isFilterError}
             />
             <FilterSelect
               handleChange={handleChangeUmds}
               value={umds}
               options={umdsData?.umds}
               disabled={sds === '시도' || sggs === '전체'}
-              error={isFilterError || isLengthError}
+              error={isFilterError}
             />
           </div>
           <AreaAddButton onClick={handleAddArea} />
