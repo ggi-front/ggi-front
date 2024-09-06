@@ -6,9 +6,11 @@ import UseContainer from '@/app/data-detail/components/SearchContainer/component
 import FilterBox from '@/app/shared/components/box/FilterBox'
 import Button from '@/app/shared/components/buttons/Button'
 import useWindowSize from '@/app/shared/hooks/useWindowSize'
+import { useErrorStore } from '@/app/shared/store/useDetailFilterStore'
 import { FormProvider, useForm } from 'react-hook-form'
 
 export default function SearchContainer() {
+  const isFilterError = useErrorStore((state) => state.isFilterError)
   const methods = useForm()
   const size = useWindowSize()
   const isMobile = size.width < 1080
@@ -40,6 +42,7 @@ export default function SearchContainer() {
             width={isMobile && '49%'}
             height={isMobile && '42px'}
             styleType="colored"
+            disabled={isFilterError}
           />
         </div>
       </form>

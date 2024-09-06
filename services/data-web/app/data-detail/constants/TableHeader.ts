@@ -75,3 +75,20 @@ export const REGIONAL_AUCTION_TABLE_HEADER = [
     width: 180,
   },
 ]
+
+export const MONTHLY_STATISTICS_TABLE_HEADER = [
+  { title: '기준일자', key: 'date', width: 108 },
+  { title: '지역', key: 'region', width: 190 },
+  { title: '용도', key: 'usage', width: 160 },
+  { title: '매각율', key: 'saleRate', width: 88 },
+  { title: '매각가율', key: 'salePriceRate', width: 88 },
+  { title: '미진행율', key: 'nonProceedRate', width: 88 },
+  { title: '평균 응찰자 수', key: 'avgBidCount', width: 88 },
+  { title: '진행건수', key: 'progressCount', width: 88 },
+  { title: '매각건수', key: 'saleCount', width: 88 },
+  { title: '유찰건수', key: 'unsuccessfulCount', width: 88 },
+  { title: '변경건수', key: 'modifiedCount', width: 88 },
+  { title: '취하건수', key: 'withdrawnCount', width: 88 },
+  { title: '감정가총액', key: 'appraisalTotal', width: 190 },
+  { title: '매각가총액', key: 'saleTotal', width: 200 },
+]

@@ -3,7 +3,7 @@ import LastMonthButton from '@/app/data-detail/components/SearchContainer/compon
 import FilterTitle from '@/app/shared/components/text/FilterTitle'
 import { useEffect, useState } from 'react'
 import { Control, useFormContext } from 'react-hook-form'
-import { subMonths, endOfMonth } from 'date-fns'
+import { subMonths, endOfMonth, startOfMonth } from 'date-fns'
 
 interface DateContainerProps {
   control: Control<any>
@@ -44,14 +44,17 @@ export default function DateContainer({ control }: DateContainerProps) {
   }
 
   const setDateRange = (monthsAgo: number) => {
+    // 저번 달 말일 구하기
     const endDate = endOfMonth(subMonths(new Date(), 1)) // 저번 달 말일
-    const startDate = subMonths(endDate, monthsAgo - 1) // endDate 기준 monthsAgo 만큼 이전 날짜 설정
+    const startDate = startOfMonth(subMonths(endDate, monthsAgo - 1))
+
     setStartDate(startDate)
     setEndDate(endDate)
     setPrevStartDate(startDate)
     setPrevEndDate(endDate)
     setValue('startDate', startDate)
     setValue('endDate', endDate)
+    setActiveButton(monthsAgo)
   }
 
   const resetDate = () => {
@@ -72,7 +75,6 @@ export default function DateContainer({ control }: DateContainerProps) {
       const monthsDifference = Math.round(
         (endDate - startDate) / (1000 * 60 * 60 * 24 * 30),
       )
-      setActiveButton(monthsDifference + 1)
     }
   }, [startDate, endDate])
 

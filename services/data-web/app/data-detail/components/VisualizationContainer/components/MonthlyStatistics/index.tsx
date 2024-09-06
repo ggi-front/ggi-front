@@ -1,3 +1,5 @@
+import { MONTHLY_STATISTICS_TABLE_HEADER } from '@/app/data-detail/constants/TableHeader'
+import { monthlyStatisticsDummyData } from '@/app/data-detail/db'
 import DownloadBtn from '@/app/shared/components/buttons/DownloadBtn'
 import TableContainer from '@/app/shared/components/table/TableContainer'
 import TableHead from '@/app/shared/components/table/TableHead'
@@ -5,6 +7,9 @@ import TableItem from '@/app/shared/components/table/TableItem'
 import PickText from '@/app/shared/components/text/PickText'
 import SubTitle from '@/app/shared/components/text/SubTitle'
 import useWindowSize from '@/app/shared/hooks/useWindowSize'
+import { excelDownload } from '@/app/shared/utils/excelDownload'
+import { excelTitle } from '@/app/shared/utils/excelTitle'
+import { formatCurrency } from '@/app/shared/utils/formatCurrency'
 
 export default function MonthlyStatistics() {
   const size = useWindowSize()
@@ -27,53 +32,54 @@ export default function MonthlyStatistics() {
           </div>
         </div>
         <DownloadBtn
-          onClick={() => {
-            console.log('다운로드')
-          }}
+          onClick={() =>
+            excelDownload({
+              data: monthlyStatisticsDummyData,
+              headers: MONTHLY_STATISTICS_TABLE_HEADER,
+              fileName: excelTitle('월별 통계'),
+              conditions: {
+                location: `서울특별시 서대문구`,
+                period: `2023.07 ~ 2024.06`,
+                usage: `아파트`,
+              },
+            })
+          }
         />
       </div>
       <TableContainer>
         <ul className="flex border-b border-[#E5E7EB]">
-          <TableHead width="108px" text="기준일자" />
-          <TableHead width="190px" text="지역" />
-          <TableHead width="160px" text="용도" />
-          <TableHead width="88px" text="매각율" />
-          <TableHead width="88px" text="매각가율" />
-          <TableHead width="88px" text="미진행율" />
-          <TableHead
-            width="88px"
-            text={
-              <span>
-                평균
-                <br />
-                응찰자 수
-              </span>
-            }
-          />
-          <TableHead width="88px" text="진행건수" />
-          <TableHead width="88px" text="매각건수" />
-          <TableHead width="88px" text="유찰건수" />
-          <TableHead width="88px" text="변경건수" />
-          <TableHead width="88px" text="취하건수" />
-          <TableHead width="190px" text="감정가총액" />
-          <TableHead width="200px" text="매각가총액" />
+          {MONTHLY_STATISTICS_TABLE_HEADER.map((headerInfo) => (
+            <TableHead
+              key={headerInfo.key}
+              width={`${headerInfo.width}px`}
+              text={headerInfo.title}
+            />
+          ))}
         </ul>
-        <ul className="flex border-b border-[#E5E7EB] last:border-none group last:bg-[#F9FBFF]">
-          <TableItem width="108px" text="2023.07" />
-          <TableItem width="190px" text="서울특별시 서대문구" />
-          <TableItem width="160px" text="아파트" />
-          <TableItem width="88px" text="45.65" />
-          <TableItem width="88px" text="65.45" />
-          <TableItem width="88px" text="15.54" />
-          <TableItem width="88px" text="5.3" />
-          <TableItem width="88px" text="65" />
-          <TableItem width="88px" text="35" />
-          <TableItem width="88px" text="25" />
-          <TableItem width="88px" text="2" />
-          <TableItem width="88px" text="8" />
-          <TableItem width="190px" text="12,110,000,000" />
-          <TableItem width="200px" text="12,110,000,000" />
-        </ul>
+        {monthlyStatisticsDummyData.map((data, index) => (
+          <ul
+            key={index}
+            className="flex border-b border-[#E5E7EB] last:border-none group last:bg-[#F9FBFF]"
+          >
+            <TableItem width="108px" text={data.date} />
+            <TableItem width="190px" text={data.region} />
+            <TableItem width="160px" text={data.usage} />
+            <TableItem width="88px" text={data.saleRate} />
+            <TableItem width="88px" text={data.salePriceRate} />
+            <TableItem width="88px" text={data.nonProceedRate} />
+            <TableItem width="88px" text={data.avgBidCount} />
+            <TableItem width="88px" text={data.progressCount} />
+            <TableItem width="88px" text={data.saleCount} />
+            <TableItem width="88px" text={data.unsuccessfulCount} />
+            <TableItem width="88px" text={data.modifiedCount} />
+            <TableItem width="88px" text={data.withdrawnCount} />
+            <TableItem
+              width="190px"
+              text={formatCurrency(data.appraisalTotal)}
+            />
+            <TableItem width="200px" text={formatCurrency(data.saleTotal)} />
+          </ul>
+        ))}
       </TableContainer>
     </div>
   )
