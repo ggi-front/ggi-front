@@ -54,6 +54,7 @@ export default function DateContainer({ control }: DateContainerProps) {
     setPrevEndDate(endDate)
     setValue('startDate', startDate)
     setValue('endDate', endDate)
+    setActiveButton(monthsAgo)
   }
 
   const resetDate = () => {
@@ -74,7 +75,6 @@ export default function DateContainer({ control }: DateContainerProps) {
       const monthsDifference = Math.round(
         (endDate - startDate) / (1000 * 60 * 60 * 24 * 30),
       )
-      setActiveButton(monthsDifference + 1)
     }
   }, [startDate, endDate])
 
