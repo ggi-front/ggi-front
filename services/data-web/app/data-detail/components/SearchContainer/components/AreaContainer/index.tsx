@@ -19,6 +19,7 @@ export default function AreaContainer() {
   const [sds, setSds] = useState('시도')
   const [sggs, setSggs] = useState('시군구')
   const [umds, setUmds] = useState('읍면동')
+  const [isLengthError, setIsLengthError] = useState(false)
 
   const areaArray = useAreaStore((state) => state.areaArray)
   const useArray = useUseStore((state) => state.useArray)
@@ -94,7 +95,7 @@ export default function AreaContainer() {
 
   const handleAddArea = () => {
     if (areaArray.length >= 10) {
-      alert('지역은 10개까지만 선택이 가능합니다.')
+      setIsLengthError(true)
       return
     }
 
@@ -177,6 +178,11 @@ export default function AreaContainer() {
             buttonTextArrays={['법원', '지역']}
           />
           <div className="flex justify-between gap-2 relative ggi:flex-col">
+            {isLengthError && (
+              <div className="absolute right-0 -top-8 ggi:static">
+                <ErrorText text="지역은 최대 10개까지 선택할 수 있습니다" />
+              </div>
+            )}
             {isFilterError && (
               <div className="absolute right-0 -top-8 ggi:static">
                 <ErrorText text="용도 복수선택 시 한 가지 지역만 선택할 수 있습니다" />
@@ -187,21 +193,21 @@ export default function AreaContainer() {
               value={sds}
               options={sdsData?.sds}
               none
-              error={isFilterError}
+              error={isFilterError || isLengthError}
             />
             <FilterSelect
               handleChange={handleChangeSggs}
               value={sggs}
               options={sggsData?.sggs}
               disabled={sds === '시도'}
-              error={isFilterError}
+              error={isFilterError || isLengthError}
             />
             <FilterSelect
               handleChange={handleChangeUmds}
               value={umds}
               options={umdsData?.umds}
               disabled={sds === '시도' || sggs === '전체'}
-              error={isFilterError}
+              error={isFilterError || isLengthError}
             />
           </div>
           <AreaAddButton onClick={handleAddArea} />
