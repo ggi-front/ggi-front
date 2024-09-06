@@ -2,7 +2,6 @@ import Header from '@/app/shared/components/layout/Header'
 import ReactQueryClientProvider from './data-pro/config/ReactQueryClientProvider'
 import './globals.css'
 import Sidebar from '@/app/shared/components/layout/SideBar'
-import AuthComponent from '@/app/shared/components/layout/AuthComponent'
 
 export const metadata = {
   title: '데이터 프로바이저',
@@ -16,7 +15,6 @@ export default async function RootLayout({
 }>) {
   return (
     <ReactQueryClientProvider>
-      <AuthComponent />
       <html lang="en">
         <head>
           <link rel="icon" href="https://web.ggi.co.kr/GGILogo.ico" />
